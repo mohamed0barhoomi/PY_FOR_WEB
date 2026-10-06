@@ -32,7 +32,9 @@ class Offre(models.Model):
 
     def clean(self):
             super().clean()
-            if self.entreprise and self.entreprise.type_entreprise != "transporteur" :
+            if self.entreprise and self.entreprise.type_entreprise != "transporteur"  :
                 raise ValidationError({
                     "entreprise":"ne peut etre cree que par une entreprise de type transporteur"
                 })
+            if  self.vehicule.entrprise_id != self.entreprise_id:
+                 raise ValidationError({"vehicule":" must be the same of entreprise "})
