@@ -3,14 +3,16 @@ from EntrepriseApp.models import Entreprise
 from VehiculeApp.models import Vehicule
 from ExpeditionsApp.models import Expedition
 from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator,MinValueValidator
 
 # Create your models here.
 class Offre(models.Model):
     prix = models.DecimalField(
     max_digits=10,
-    decimal_places=2
+    decimal_places=2,
+    validators=[MinValueValidator(1,"le prix doit sup a 0")]
     )# decimal
-    delai_jours=models.PositiveIntegerField()# int
+    delai_jours=models.PositiveIntegerField(validators=[MinValueValidator(1,"le delai doit sup ou egal a 1")])# int
     statut=models.CharField(choices=[ ("proposee","proposee"), 
                                      ("acceptee","acceptee"),
                                      ("refusee","refusee"),

@@ -1,6 +1,7 @@
 from django.db import models
 from EntrepriseApp.models import Entreprise
 from django.core.validators import MinValueValidator 
+
 # Create your models here.
 class Vehicule(models.Model):
     immatriculation=models.CharField(max_length=11,unique=True)# string «unique»

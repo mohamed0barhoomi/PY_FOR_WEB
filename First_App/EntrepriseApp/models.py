@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinLengthValidator,MaxLengthValidator,RegexValidator
 from django.core.exceptions import ValidationError
-
+from django.utils import timezone
 # Create your models here.
 
 matrcule_fiscalee=RegexValidator(regex=r'^\d{7}[/ -]?[A-Za-z][/ -]?[ABDNPEabdnpe][/ -]?[MPCNEmpcne][/ -]?\d{3}$',
@@ -22,7 +22,7 @@ def validation_email(value):
 
 class Utilisateur(AbstractUser):
    user_id=models.CharField(max_length=8,primary_key=True)
-   email=models.EmailField(unique=True)  #string «unique»
+   email=models.EmailField(unique=True,validators=[validation_email])  #string «unique»
    role = models.CharField(
     max_length=20,
     choices=[
@@ -35,6 +35,26 @@ class Utilisateur(AbstractUser):
    telephone=models.CharField(max_length=8) # string
    created_at=models.DateTimeField(auto_now_add=True) # datetime
    updated_at=models.DateTimeField(auto_now=True) #datetime
+
+   @classmethod
+   def _generateID(cls):
+       annee=timezone.now().strftime("%y")
+       pref=f"{annee}USER"
+       dernier=cls.objects.filter(user_id__startswith=pref).order_by("user_id").last()
+       compteur=int(dernier.reference[-2:0])+1 if dernier else 1
+
+       if compteur >99:
+           raise ValidationError ("limit axceeded")
+       return f"{prefixe} {compteur:02d}"
+
+   def save(self,*args,**kwargs):
+           if not self.user_id:
+               self.user_id = self._generateID()
+   
+           self.full_clean()
+           super.save(*args,**kwargs)
+
+       
 
 class Entreprise(models.Model):
     raison_sociale=models.CharField() 
