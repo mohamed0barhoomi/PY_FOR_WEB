@@ -2,6 +2,8 @@ from django.db import models
 from EntrepriseApp.models import Entreprise
 from VehiculeApp.models import Vehicule
 from ExpeditionsApp.models import Expedition
+from django.core.exceptions import ValidationError
+
 # Create your models here.
 class Offre(models.Model):
     prix = models.DecimalField(
@@ -26,3 +28,11 @@ class Offre(models.Model):
     expedition=models.ForeignKey(Expedition,
                                  on_delete=models.CASCADE,
                                  related_name="expedition")
+
+
+    def clean(self):
+            super().clean()
+            if self.entrprise_id and self.entrprise.type_entreprise != "transporteur" :
+                raise ValidationError({
+                    "entreprise":"ne peut etre cree que par une entreprise de type transporteur"
+                })
