@@ -16,14 +16,16 @@ class Expedition(models.Model):
     date_souhaitee=models.DateTimeField #date
     description=models.TextField()# text
     statut=models.CharField(max_length=30,choices=[("publiee","publiee"),
-                                     (" attribuee"," attribuee"),
-                                       ("en_cours","en_cours"),
-                                       ("livree","livree"),
-                                       ("annulee","annulee") ],
-                                       default= "publiee")# choice
+                                                   (" attribuee"," attribuee"),
+                                                   ("en_cours","en_cours"),
+                                                   ("livree","livree"),
+                                                   ("annulee","annulee") ],
+                                                    default= "publiee")# choice
+    
     created_at=models.DateTimeField(auto_now_add=True)# datetime
     updated_at=models.DateTimeField(auto_now=True)# datetime
-    entrprise=models.ForeignKey(Entreprise,
+
+    entreprise=models.ForeignKey(Entreprise,
                                    on_delete=models.CASCADE,
                                    related_name="expedition")
 
@@ -32,6 +34,10 @@ class Expedition(models.Model):
         if self.entrprise_id and self.entrprise.type_entreprise != "chargeur" :
             raise ValidationError({
                 "entreprise":"ne peut etre cree que par une entreprise de type chargeur"
+            })
+        if self.statut !="publiee":
+            raise ValidationError({
+                "statut":"must be publiee"
             })
         
     @classmethod
