@@ -22,7 +22,7 @@ def validation_email(value):
 
 class Utilisateur(AbstractUser):
    user_id=models.CharField(max_length=8,primary_key=True)
-   email=models.EmailField(unique=True,validators=[validation_email])  #string «unique»
+   email=models.EmailField(unique=True,validators=[validation_email],blank=True)  #string «unique»
    role = models.CharField(
     max_length=20,
     choices=[
@@ -32,10 +32,14 @@ class Utilisateur(AbstractUser):
     ],
     default="chargeur",
     ) #choice
-   telephone=models.CharField(max_length=8) # string
+   telephone=models.CharField(max_length=8,blank=True,default="********") # string
    created_at=models.DateTimeField(auto_now_add=True) # datetime
    updated_at=models.DateTimeField(auto_now=True) #datetime
-
+   
+   
+   def __str__(self):
+           return self.user_id
+   
    @classmethod
    def _generateID(cls):
        annee=timezone.now().strftime("%y")
@@ -45,14 +49,15 @@ class Utilisateur(AbstractUser):
 
        if compteur >99:
            raise ValidationError ("limit axceeded")
-       return f"{prefixe} {compteur:02d}"
+       return f"{pref}{compteur:02d}"
 
    def save(self,*args,**kwargs):
            if not self.user_id:
                self.user_id = self._generateID()
    
            self.full_clean()
-           super.save(*args,**kwargs)
+           super().save(*args,**kwargs)
+    
 
        
 
@@ -70,3 +75,5 @@ class Entreprise(models.Model):
     gerant=models.OneToOneField(Utilisateur,
                               on_delete=models.CASCADE,
                               related_name="entrprise")
+    def __str__(self):
+            return self.raison_sociale

@@ -45,7 +45,7 @@ class Offre(models.Model):
                  offre_exisiste=Offre.objects.filter(
                       entreprise=self.entreprise,
                       expedition=self.expedition,
-                      status="proposee"
+                      statut="proposee"
                  )
             if self.pk:
                  offre_exisiste=offre_exisiste.exclude(pk=self.pk)
@@ -77,7 +77,8 @@ class Offre(models.Model):
                         "type vehicule ":" must be compatible with the expedition poids"
                     })
                 
-                
+    def __str__(self):
+            return self.statut            
                 
                 
             
@@ -106,3 +107,5 @@ class Offre(models.Model):
             ).exclude(
                 pk=self.pk
             ).update(statut="refusee")
+
+    

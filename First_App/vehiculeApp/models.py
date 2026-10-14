@@ -19,6 +19,8 @@ class Vehicule(models.Model):
     entrprise=models.ForeignKey(Entreprise,
                                 on_delete=models.CASCADE,
                                 related_name="vehicule")
+    def __str__(self):
+        return self.immatriculation
 
 
 

@@ -31,9 +31,10 @@ class Expedition(models.Model):
 
     def clean(self):
         super().clean()
-        if self.entrprise_id and self.entrprise.type_entreprise != "chargeur" :
-            raise ValidationError({
-                "entreprise":"ne peut etre cree que par une entreprise de type chargeur"
+        if self.entreprise_id :
+            if self.entreprise.type_entreprise != "chargeur" :
+                raise ValidationError({
+                   "entreprise":"ne peut etre cree que par une entreprise de type chargeur"
             })
         if self.statut !="publiee":
             raise ValidationError({
@@ -57,6 +58,8 @@ class Expedition(models.Model):
             self.reference = self._generate_ref()
 
         self.full_clean()
-        super.save(*args,**kwargs)
+        super().save(*args,**kwargs)
+    def __str__(self):
+        return self.reference
             
     
