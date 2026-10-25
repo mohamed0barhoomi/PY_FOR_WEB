@@ -1,0 +1,234 @@
+:root {
+  --admin-navy: #12263f;
+  --admin-navy-light: #1d3a5c;
+  --admin-teal: #16b8a6;
+  --admin-teal-dark: #0e8f83;
+  --admin-surface: #ffffff;
+  --admin-background: #f3f7fb;
+  --admin-text: #23344d;
+  --admin-muted: #718096;
+  --admin-border: #e3eaf2;
+  --admin-shadow: 0 8px 24px rgba(18, 38, 63, 0.08);
+}
+
+body {
+  background: var(--admin-background);
+  color: var(--admin-text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+#header {
+  align-items: center;
+  background: linear-gradient(135deg, var(--admin-navy), var(--admin-navy-light));
+  box-shadow: 0 4px 16px rgba(18, 38, 63, 0.18);
+  color: #fff;
+  min-height: 72px;
+  padding: 0 32px;
+}
+
+#site-name {
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+#site-name a {
+  align-items: center;
+  color: #fff;
+  display: inline-flex;
+  gap: 12px;
+}
+
+#site-name a:hover {
+  color: #d9fffa;
+}
+
+#site-name small {
+  color: #a9c0d7;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  align-items: center;
+  background: var(--admin-teal);
+  border-radius: 12px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  width: 42px;
+}
+
+#user-tools {
+  color: #d9e6f2;
+  font-size: 0.85rem;
+}
+
+#user-tools a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+#content {
+  max-width: 1440px;
+  padding: 32px;
+}
+
+#content-main {
+  width: 100%;
+}
+
+.breadcrumbs {
+  background: transparent;
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+  padding: 0 0 20px;
+}
+
+.breadcrumbs a {
+  color: var(--admin-teal-dark);
+}
+
+h1 {
+  color: var(--admin-navy);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.module,
+.dashboard .module {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  box-shadow: var(--admin-shadow);
+  overflow: hidden;
+}
+
+.module caption,
+.module h2,
+.module h3 {
+  background: var(--admin-navy);
+  color: #fff;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  padding: 14px 18px;
+}
+
+.module table {
+  border-radius: 0;
+}
+
+table thead th {
+  background: #f7fafc;
+  color: var(--admin-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background: #fbfdff;
+}
+
+tr:hover {
+  background: #effcfb;
+}
+
+td,
+th {
+  border-bottom-color: var(--admin-border);
+}
+
+a:link,
+a:visited {
+  color: var(--admin-teal-dark);
+}
+
+.object-tools a,
+.submit-row input,
+input[type="submit"],
+button,
+.button {
+  background: var(--admin-teal);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+}
+
+.object-tools a:hover,
+.submit-row input:hover,
+input[type="submit"]:hover,
+button:hover,
+.button:hover {
+  background: var(--admin-teal-dark);
+  color: #fff;
+}
+
+.submit-row {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow);
+}
+
+input,
+textarea,
+select,
+.selector {
+  border: 1px solid #d7e1eb;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: var(--admin-text);
+  padding: 9px 11px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--admin-teal);
+  box-shadow: 0 0 0 3px rgba(22, 184, 166, 0.15);
+  outline: none;
+}
+
+#changelist-filter {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow);
+}
+
+#changelist-filter h2 {
+  background: var(--admin-navy);
+  border-radius: 12px 12px 0 0;
+}
+
+.paginator {
+  color: var(--admin-muted);
+}
+
+@media (max-width: 767px) {
+  #header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  #user-tools {
+    padding-bottom: 2px;
+  }
+
+  #content {
+    padding: 22px 16px;
+  }
+}

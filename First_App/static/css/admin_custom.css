@@ -1,0 +1,40 @@
+/* Main page background */
+body {
+    background-color: #f4f7fb;
+}
+
+/* Header */
+#header {
+    background-color: #172554;
+    color: white;
+}
+
+/* Header links */
+#header a {
+    color: white;
+}
+
+/* Module headings */
+.module caption,
+.inline-group h2 {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Buttons */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    padding: 8px 14px;
+}
+
+/* Links */
+a:link,
+a:visited {
+    color: #2563eb;
+}

@@ -31,17 +31,47 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "jazzmin",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # Your applications
     "EntrepriseApp",
     "OffreApp",
-    "ExpeditionsApp",
     "VehiculeApp",
+    "ExpeditionsApp",
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Transport Management",
+    "site_header": "Transport Dashboard",
+    "site_brand": "TransportApp",
+    "welcome_sign": "Welcome to Transport Management",
+    "copyright": "TransportApp",
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "order_with_respect_to": [
+        "EntrepriseApp",
+        "VehiculeApp",
+        "ExpeditionsApp",
+        "OffreApp",
+    ],
+
+    "icons": {
+        "EntrepriseApp": "fas fa-building",
+        "VehiculeApp": "fas fa-truck",
+        "ExpeditionsApp": "fas fa-box",
+        "OffreApp": "fas fa-file-invoice",
+        "auth": "fas fa-users",
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,19 +86,20 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'train_django.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+{
+'BACKEND': 'django.template.backends.django.DjangoTemplates',
+'DIRS': [BASE_DIR / 'templates'],
+'APP_DIRS': True,
+'OPTIONS': {
+'context_processors': [
+'django.template.context_processors.request',
+'django.contrib.auth.context_processors.auth',
+'django.contrib.messages.context_processors.messages',
+],
+},
+},
 ]
+
 
 WSGI_APPLICATION = 'train_django.wsgi.application'
 

@@ -27,7 +27,7 @@ class Offre(models.Model):
                                  related_name="offre")
     vehicule=models.ForeignKey(Vehicule,
                                on_delete=models.CASCADE,
-                               related_name="offre")
+                               related_name="vehicule")
     expedition=models.ForeignKey(Expedition,
                                  on_delete=models.CASCADE,
                                  related_name="expedition")
@@ -62,19 +62,19 @@ class Offre(models.Model):
             if self.expedition and self.vehicule:
                 if self.expedition.poids_kg < 1500 and self.vehicule.type_vehicule != "camionnette":
                     raise ValidationError({
-                        "type vehicule ":" must be compatible with the expedition poids"
+                        "vehicule":" must be compatible with the expedition poids"
                     })
                 if self.expedition.poids_kg >= 1500 and self.expedition.poids_kg <3500 and self.vehicule.type_vehicule != "fourgon":
                     raise ValidationError({
-                        "type vehicule ":" must be compatible with the expedition poids"
+                        "vehicule":" must be compatible with the expedition poids"
                     })
                 if self.expedition.poids_kg >= 3500 and self.expedition.poids_kg <19000 and self.vehicule.type_vehicule != "semi-remorque":
                     raise ValidationError({
-                        "type vehicule ":" must be compatible with the expedition poids"
+                        "vehicule":" must be compatible with the expedition poids"
                     })
                 if self.expedition.poids_kg >= 19000 and self.expedition.poids_kg <=26000 and self.vehicule.type_vehicule != "camion-porteur":
                     raise ValidationError({
-                        "type vehicule ":" must be compatible with the expedition poids"
+                        "vehicule":" must be compatible with the expedition poids"
                     })
                 
     def __str__(self):

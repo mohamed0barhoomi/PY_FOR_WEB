@@ -38,14 +38,14 @@ class Utilisateur(AbstractUser):
    
    
    def __str__(self):
-           return self.user_id
+           return self.username
    
    @classmethod
    def _generateID(cls):
        annee=timezone.now().strftime("%y")
        pref=f"{annee}USER"
        dernier=cls.objects.filter(user_id__startswith=pref).order_by("user_id").last()
-       compteur=int(dernier.reference[-2:0])+1 if dernier else 1
+       compteur=int(dernier.user_id[-2:])+1 if dernier else 1
 
        if compteur >99:
            raise ValidationError ("limit axceeded")
