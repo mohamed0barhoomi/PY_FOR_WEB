@@ -25,8 +25,26 @@ class AdminEntreprise(admin.ModelAdmin):
     search_fields=('raison_sociale',)
     list_editable=('raison_sociale',)
     #list_per_page
-    #readonly_fields
-    #fieldsets
+    readonly_fields=('created_at', 'updated_at')
+    fieldsets = (
+        ('Informations générales', {
+            'fields': (
+                'raison_sociale',
+                'matricule_fiscal',
+                'type_entreprise',
+                'adresse'
+            )
+        }),
+
+        ('Responsable', {
+            'fields': ('gerant',)
+        }),
+
+        ('Dates', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
 
 class adminUSer(UserAdmin):
     list_display=("email","role",'telephone')
