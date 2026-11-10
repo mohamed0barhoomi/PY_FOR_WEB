@@ -13,7 +13,7 @@ class Expedition(models.Model):
     decimal_places=2,
     validators=[MinValueValidator(0.001)]
     ) #decimal
-    date_souhaitee=models.DateTimeField #date
+    date_souhaitee=models.DateTimeField(default=timezone.now) #date
     description=models.TextField()# text
     statut=models.CharField(max_length=30,choices=[("publiee","publiee"),
                                                    (" attribuee"," attribuee"),

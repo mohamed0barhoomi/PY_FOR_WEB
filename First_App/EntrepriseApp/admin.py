@@ -16,7 +16,7 @@ admin.site.index_title = "Tableau de bord"
 class VehiculeInligne(admin.TabularInline):
     model=Vehicule
     fields=('immatriculation','type_vehicule','capacite_kg','disponible')
-    extra=2
+    extra=1
     show_change_link=True
 class AdminEntreprise(admin.ModelAdmin):
     inlines=[VehiculeInligne]

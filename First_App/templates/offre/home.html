@@ -1,0 +1,170 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expéditions | TransConnect</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dce6f1);
+            min-height: 100vh;
+            color: #263238;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #dce6f1;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            color: #17365d;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #657080;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: #263238;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #2471a3;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #17365d;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #657080;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #2471a3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #657080;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📦 Gestion des Expéditions</h1>
+        <p>Bienvenue dans l'espace de gestion des expéditions de TransConnect</p>
+    </header>
+
+    <main>
+
+        <section class="intro">
+            <h2>Espace Expéditions</h2>
+            <p>Choisissez une action pour gérer vos expéditions.</p>
+        </section>
+
+        <section class="cards">
+
+            <!-- Consulter les expéditions -->
+            <a href="{% url 'offre:list_off' %}" class="card">
+                <div class="icon">📋</div>
+                <h3>Liste des expéditions</h3>
+                <p>
+                    Consulter toutes les expéditions enregistrées
+                    dans le système.
+                </p>
+                <span class="button">Consulter</span>
+            </a>
+
+            <!-- Retour à l'accueil des expéditions -->
+            <a href="javascript:history.back()" class="card">
+                <div class="icon">🏠</div>
+                <h3>Page principale</h3>
+                <p>
+                    Retourner à la page principale
+                    de gestion des expéditions.
+                </p>
+                <span class="button">Retour</span>
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 TransConnect — Gestion des expéditions.
+    </footer>
+
+</body>
+</html>
+```

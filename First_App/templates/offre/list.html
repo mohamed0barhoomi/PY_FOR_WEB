@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste des expéditions</title>
+  </head>
+
+  <body>
+    <h1>Liste des expéditions</h1>
+
+    <ul>
+      {% for off in list %}
+        <li>
+          <a href="{% url 'offre:details_off' off.pk %}">
+            {{ off.delai_jours }}
+          </a>
+          -- {{ off.entreprise }}
+          -- {{off.expedition}} 
+          -- {{ off.statut }} --
+          <a href="{% url 'offre:details_off' off.pk %}">
+            details
+          </a>
+          <span>||</span>
+          <a href="{% url 'offre:delete' off.pk %}">
+            Supprimer
+          </a>
+        </li>
+      {% empty %}
+        <li>Aucune expédition trouvée.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+

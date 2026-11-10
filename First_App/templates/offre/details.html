@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Détails de l'expédition | TransConnect</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        padding: 40px;
+        color: #263238;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        color: #17365d;
+        margin-bottom: 25px;
+    }
+
+    p {
+        margin: 15px 0;
+        font-size: 16px;
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        margin-right: 10px;
+        padding: 10px 18px;
+        background: #2471a3;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .delete {
+        background: #dc3545;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Détails de l'offre {{ off.reference }}</h1>
+
+    <p><strong>prix  :</strong> {{ off.prix }}</p>
+
+    <p><strong>delai jours:</strong> {{ off.delai_jours }}</p>
+
+    <p><strong>Statut :</strong> {{ off.statut }}</p>
+
+    <a href="{% url 'expedition:list' %}">
+        Retour à la liste
+    </a>
+
+    <a class="delete" href="{% url 'expedition:delete' off.pk %}">
+        Supprimer
+    </a>
+
+</div>
+
+
+</body>
+</html>

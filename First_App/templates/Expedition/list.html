@@ -1,0 +1,214 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Liste des expéditions | TransConnect</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #eef2f7, #dce6f1);
+        min-height: 100vh;
+        color: #263238;
+        padding: 40px 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+
+    header {
+        background: #17365d;
+        color: white;
+        padding: 35px 20px;
+        text-align: center;
+        border-radius: 15px;
+        margin-bottom: 35px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        color: #dce6f1;
+        font-size: 15px;
+    }
+
+    .expedition-list {
+        list-style: none;
+    }
+
+    .expedition-list li {
+        background: white;
+        padding: 22px 25px;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+        border-left: 5px solid #2471a3;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        transition: 0.3s;
+    }
+
+    .expedition-list li:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .info {
+        color: #657080;
+        font-size: 14px;
+        margin-top: 10px;
+        line-height: 1.8;
+    }
+
+    .reference {
+        color: #17365d;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .details {
+        background: #2471a3;
+        color: white;
+        padding: 10px 17px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .details:hover {
+        background: #17365d;
+    }
+
+    .delete {
+        background: #dc3545;
+        color: white;
+        padding: 10px 17px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .delete:hover {
+        background: #b02a37;
+    }
+
+    .empty {
+        text-align: center;
+        color: #657080;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #657080;
+        font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+        .expedition-list li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .actions {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="container">
+
+    <header>
+        <h1>📦 Liste des expéditions</h1>
+        <p>Consultez et gérez toutes les expéditions de TransConnect</p>
+    </header>
+
+    <ul class="expedition-list">
+        {% for off in list %}
+            <li>
+                <div>
+                    <span class="reference">
+                        📋 {{ off.reference }}
+                    </span>
+
+                    <p class="info">
+                        📍 {{ off.ville_depart }}
+                        <br>
+                        📌 Statut : {{ off.statut }}
+                    </p>
+                </div>
+
+                <div class="actions">
+                    <a class="details" href="{% url 'expedition:details' off.pk %}">
+                        👁️ Détails
+                    </a>
+                <div class="actions">
+                    <a class="details" href="{% url 'expedition:update_class' off.pk %}">
+                        Update
+                    </a>
+
+                    <a class="delete" href="{% url 'expedition:delete' off.pk %}">
+                        🗑️ Supprimer
+                    </a>
+                </div>
+            </li>
+
+        {% empty %}
+            <li class="empty">
+                Aucune expédition trouvée.
+            </li>
+        {% endfor %}
+    </ul>
+
+    <footer>
+        &copy; 2026 TransConnect — Gestion des expéditions.
+    </footer>
+
+</div>
+```
+
+</body>
+</html>
