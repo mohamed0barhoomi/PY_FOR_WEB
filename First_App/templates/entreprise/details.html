@@ -1,0 +1,23 @@
+{% extends "base_app.html" %}
+
+{% block title %}Détails entreprise{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}🏢 {{ ent.raison_sociale }}{% endblock %}
+{% block subheader %}Détails entreprise{% endblock %}
+
+{% block content %}
+<div class="box">
+    <p><strong>Raison sociale :</strong> {{ ent.raison_sociale }}</p>
+    <p><strong>Matricule fiscal :</strong> {{ ent.matricule_fiscal }}</p>
+    <p><strong>Type :</strong> {{ ent.type_entreprise }}</p>
+    <p><strong>Adresse :</strong> {{ ent.adresse }}</p>
+    <p><strong>Gérant :</strong> {{ ent.gerant }}</p>
+    <p><strong>Créée le :</strong> {{ ent.created_at|date:"d/m/Y H:i" }}</p>
+
+    <div class="actions">
+        <a class="btn" href="{% url 'entreprise:list' %}">Retour à la liste</a>
+        <a class="btn" href="{% url 'entreprise:update_class' ent.pk %}">✏️ Modifier</a>
+        <a class="btn delete" href="{% url 'entreprise:supprimer_class' ent.pk %}">🗑️ Supprimer</a>
+    </div>
+</div>
+{% endblock %}

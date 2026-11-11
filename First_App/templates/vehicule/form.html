@@ -1,0 +1,19 @@
+{% extends "base_app.html" %}
+
+{% block title %}{% if object %}Modifier{% else %}Ajouter{% endif %} véhicule{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}{% if object %}✏️ Modifier {{ object }}{% else %}➕ Ajouter véhicule{% endif %}{% endblock %}
+
+{% block content %}
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+        <div class="actions">
+            <button type="submit">{% if object %}Modifier{% else %}Enregistrer{% endif %}</button>
+            <a class="btn light" href="{% url 'vehicule:liste_class' %}">Retour à la liste</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

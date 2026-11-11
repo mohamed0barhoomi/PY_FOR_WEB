@@ -35,31 +35,32 @@ class Offre(models.Model):
 
     def clean(self):
             super().clean()
-            if self.entreprise and self.entreprise.type_entreprise != "transporteur"  :
+            # on utilise *_id pour ne pas planter quand un champ n'est pas rempli
+            if self.entreprise_id and self.entreprise.type_entreprise != "transporteur"  :
                 raise ValidationError({
                     "entreprise":"ne peut etre cree que par une entreprise de type transporteur"
                 })
-            if  self.vehicule.entrprise_id != self.entreprise_id:
+            if self.vehicule_id and self.vehicule.entrprise_id != self.entreprise_id:
                  raise ValidationError({"vehicule":" must be the same of entreprise "})
-            if self.entreprise and self.expedition and self.statut == "proposee":
+            if self.entreprise_id and self.expedition_id and self.statut == "proposee":
                  offre_exisiste=Offre.objects.filter(
-                      entreprise=self.entreprise,
-                      expedition=self.expedition,
+                      entreprise_id=self.entreprise_id,
+                      expedition_id=self.expedition_id,
                       statut="proposee"
                  )
-            if self.pk:
-                 offre_exisiste=offre_exisiste.exclude(pk=self.pk)
-            if offre_exisiste.exists():
-                 raise ValidationError({
-                      "offre":"cette entreprise possede deja une offre au status propose pour cette expedition"
-                 })
-            
-            if self.vehicule and not self.vehicule.disponible:
+                 if self.pk:
+                      offre_exisiste=offre_exisiste.exclude(pk=self.pk)
+                 if offre_exisiste.exists():
+                      raise ValidationError(
+                           "cette entreprise possede deja une offre au status propose pour cette expedition"
+                      )
+
+            if self.vehicule_id and not self.vehicule.disponible:
                 raise ValidationError({
                     "vehicule":"vehicule not disponible to offre"
                 })
-            
-            if self.expedition and self.vehicule:
+
+            if self.expedition_id and self.vehicule_id:
                 if self.expedition.poids_kg < 1500 and self.vehicule.type_vehicule != "camionnette":
                     raise ValidationError({
                         "vehicule":" must be compatible with the expedition poids"

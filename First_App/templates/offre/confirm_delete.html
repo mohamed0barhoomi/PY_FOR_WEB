@@ -1,0 +1,18 @@
+{% extends "base_app.html" %}
+
+{% block title %}Supprimer une offre{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}🗑️ Supprimer l'offre{% endblock %}
+
+{% block content %}
+<div class="box">
+    <p>Êtes-vous sûr de vouloir supprimer l'offre #{{ off.pk }} ({{ off.prix }} DT) ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="delete">Supprimer</button>
+            <a class="btn light" href="{% url 'offre:liste_class' %}">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

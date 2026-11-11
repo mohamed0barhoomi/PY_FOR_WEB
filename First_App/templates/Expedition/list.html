@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
 <title>Liste des expéditions | TransConnect</title>
 
 <style>
@@ -152,19 +151,22 @@
         }
     }
 </style>
-```
 
 </head>
 
 <body>
 
-```
 <div class="container">
 
     <header>
         <h1>📦 Liste des expéditions</h1>
         <p>Consultez et gérez toutes les expéditions de TransConnect</p>
     </header>
+
+    <p style="margin-bottom:25px">
+        <a class="details" href="{% url 'expedition:create_class' %}">➕ Ajouter une expédition</a>
+        <a class="details" href="{% url 'expedition:home' %}">⬅️ Retour</a>
+    </p>
 
     <ul class="expedition-list">
         {% for off in list %}
@@ -185,7 +187,6 @@
                     <a class="details" href="{% url 'expedition:details' off.pk %}">
                         👁️ Détails
                     </a>
-                <div class="actions">
                     <a class="details" href="{% url 'expedition:update_class' off.pk %}">
                         Update
                     </a>
@@ -208,7 +209,6 @@
     </footer>
 
 </div>
-```
 
 </body>
 </html>

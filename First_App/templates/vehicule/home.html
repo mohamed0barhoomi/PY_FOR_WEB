@@ -1,0 +1,30 @@
+{% extends "base_app.html" %}
+
+{% block title %}Véhicules{% endblock %}
+{% block header %}🚛 Gestion des véhicules{% endblock %}
+{% block subheader %}Bienvenue dans l'espace de gestion des véhicules de TransConnect{% endblock %}
+
+{% block content %}
+<section class="cards">
+    <a href="{% url 'vehicule:list' %}" class="card">
+        <div class="icon">📋</div>
+        <h3>Liste des véhicules</h3>
+        <p>Consulter tous les véhicules enregistrés dans le système.</p>
+        <span class="btn">Consulter</span>
+    </a>
+
+    <a href="{% url 'vehicule:create_class' %}" class="card">
+        <div class="icon">➕</div>
+        <h3>Ajouter</h3>
+        <p>Enregistrer un(e) nouveau/nouvelle véhicule.</p>
+        <span class="btn">Créer</span>
+    </a>
+
+    <a href="{% url 'home' %}" class="card">
+        <div class="icon">🏠</div>
+        <h3>Page principale</h3>
+        <p>Retourner à la page principale de TransConnect.</p>
+        <span class="btn">Retour</span>
+    </a>
+</section>
+{% endblock %}

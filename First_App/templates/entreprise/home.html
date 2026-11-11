@@ -1,0 +1,30 @@
+{% extends "base_app.html" %}
+
+{% block title %}Entreprises{% endblock %}
+{% block header %}🏢 Gestion des entreprises{% endblock %}
+{% block subheader %}Bienvenue dans l'espace de gestion des entreprises de TransConnect{% endblock %}
+
+{% block content %}
+<section class="cards">
+    <a href="{% url 'entreprise:list' %}" class="card">
+        <div class="icon">📋</div>
+        <h3>Liste des entreprises</h3>
+        <p>Consulter tous les entreprises enregistrés dans le système.</p>
+        <span class="btn">Consulter</span>
+    </a>
+
+    <a href="{% url 'entreprise:create_class' %}" class="card">
+        <div class="icon">➕</div>
+        <h3>Ajouter</h3>
+        <p>Enregistrer un(e) nouveau/nouvelle entreprise.</p>
+        <span class="btn">Créer</span>
+    </a>
+
+    <a href="{% url 'home' %}" class="card">
+        <div class="icon">🏠</div>
+        <h3>Page principale</h3>
+        <p>Retourner à la page principale de TransConnect.</p>
+        <span class="btn">Retour</span>
+    </a>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_app.html" %}
+
+{% block title %}Supprimer véhicule{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}🗑️ Supprimer véhicule{% endblock %}
+
+{% block content %}
+<div class="box">
+    <p>Êtes-vous sûr de vouloir supprimer « {{ veh }} » ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="delete">Supprimer</button>
+            <a class="btn light" href="{% url 'vehicule:liste_class' %}">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

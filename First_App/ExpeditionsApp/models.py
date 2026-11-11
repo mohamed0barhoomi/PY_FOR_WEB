@@ -5,9 +5,9 @@ from django.core.validators import MinValueValidator
 from django.utils import timezone
 # Create your models here.
 class Expedition(models.Model):
-    reference=models.CharField(max_length=20,unique=True)# string «unique»
-    ville_depart=models.CharField() #string
-    ville_arrivee=models.CharField() #string
+    reference = models.CharField(max_length=20,unique=True)# string «unique»
+    ville_depart = models.CharField() #string
+    ville_arrivee = models.CharField() #string
     poids_kg = models.DecimalField(
     max_digits=10,
     decimal_places=2,
@@ -46,11 +46,11 @@ class Expedition(models.Model):
         annee=timezone.now().strftime('%y')
         prefixe = f"EXP_{annee}_"
         dernier=cls.objects.filter(reference__startswith=prefixe).order_by("reference").last()
-        compteur=int(dernier.reference[-5:0])+1 if dernier else 1
+        compteur=int(dernier.reference[-5:])+1 if dernier else 1
 
         if compteur > 99999:
             raise ValidationError ("limit axceeded")
-        return f"{prefixe} {compteur:05d}"
+        return f"{prefixe}{compteur:05d}"
 
     
     def save(self,*args,**kwargs):

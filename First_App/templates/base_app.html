@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TransConnect{% endblock %} | TransConnect</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dce6f1);
+            min-height: 100vh;
+            color: #263238;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+        .container.narrow { max-width: 650px; }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin-bottom: 10px; }
+        header p { color: #dce6f1; font-size: 15px; }
+
+        /* ---- cartes (pages home) ---- */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: #263238;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid #2471a3;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-7px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card .icon { font-size: 45px; margin-bottom: 15px; }
+        .card h3 { color: #17365d; font-size: 21px; margin-bottom: 12px; }
+        .card p { color: #657080; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+
+        /* ---- listes ---- */
+        .item-list { list-style: none; }
+        .item-list li {
+            background: white;
+            padding: 22px 25px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-left: 5px solid #2471a3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .item-list li.empty { justify-content: center; color: #657080; }
+        .reference { color: #17365d; font-weight: bold; font-size: 17px; }
+        .info { color: #657080; font-size: 14px; margin-top: 10px; line-height: 1.8; }
+
+        /* ---- boutons ---- */
+        .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .btn, button {
+            display: inline-block;
+            background: #2471a3;
+            color: white;
+            padding: 10px 17px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover, button:hover { background: #17365d; }
+        .btn.delete, button.delete { background: #dc3545; }
+        .btn.delete:hover, button.delete:hover { background: #b02a37; }
+        .btn.light { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+        .toolbar { margin-bottom: 25px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+        /* ---- boîte (détails / formulaires) ---- */
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .box p { margin: 12px 0; }
+        .box .actions { margin-top: 25px; }
+
+        form p { margin-bottom: 18px; }
+        label { display: block; font-weight: 600; color: #334155; margin-bottom: 6px; font-size: 14px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 15px;
+            background: #f8fafc;
+        }
+        input[type="checkbox"] { width: auto; }
+        textarea { min-height: 100px; resize: vertical; }
+        .helptext { display: block; font-size: 12px; color: #64748b; margin-top: 4px; }
+        ul.errorlist { list-style: none; color: #dc2626; font-size: 13px; margin-bottom: 6px; }
+
+        footer { text-align: center; margin-top: 40px; color: #657080; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container {% block container_class %}{% endblock %}">
+        <header>
+            <h1>{% block header %}TransConnect{% endblock %}</h1>
+            <p>{% block subheader %}{% endblock %}</p>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            <a class="btn light" href="{% url 'home' %}">🏠 Page principale</a>
+            <p style="margin-top:15px">&copy; 2026 TransConnect</p>
+        </footer>
+    </div>
+</body>
+</html>

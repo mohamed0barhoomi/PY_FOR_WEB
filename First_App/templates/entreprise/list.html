@@ -1,0 +1,34 @@
+{% extends "base_app.html" %}
+
+{% block title %}Liste des entreprises{% endblock %}
+{% block header %}🏢 Liste des entreprises{% endblock %}
+{% block subheader %}Consultez et gérez tous les entreprises de TransConnect{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+    <a class="btn" href="{% url 'entreprise:create_class' %}">➕ Ajouter</a>
+    <a class="btn light" href="{% url 'entreprise:home' %}">⬅️ Retour</a>
+</div>
+
+<ul class="item-list">
+    {% for ent in list %}
+        <li>
+            <div>
+                <span class="reference">🏢 {{ ent.raison_sociale }}</span>
+                <p class="info">
+                        🧾 Matricule fiscal : {{ ent.matricule_fiscal }}<br>
+                        🏷️ Type : {{ ent.type_entreprise }}<br>
+                        👤 Gérant : {{ ent.gerant }}
+                </p>
+            </div>
+            <div class="actions">
+                <a class="btn" href="{% url 'entreprise:details' ent.pk %}">👁️ Détails</a>
+                <a class="btn" href="{% url 'entreprise:update_class' ent.pk %}">✏️ Modifier</a>
+                <a class="btn delete" href="{% url 'entreprise:supprimer_class' ent.pk %}">🗑️ Supprimer</a>
+            </div>
+        </li>
+    {% empty %}
+        <li class="empty">Aucun(e) entreprise trouvé(e).</li>
+    {% endfor %}
+</ul>
+{% endblock %}

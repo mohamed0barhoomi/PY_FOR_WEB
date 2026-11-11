@@ -1,0 +1,35 @@
+{% extends "base_app.html" %}
+
+{% block title %}Liste des véhicules{% endblock %}
+{% block header %}🚛 Liste des véhicules{% endblock %}
+{% block subheader %}Consultez et gérez tous les véhicules de TransConnect{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+    <a class="btn" href="{% url 'vehicule:create_class' %}">➕ Ajouter</a>
+    <a class="btn light" href="{% url 'vehicule:home' %}">⬅️ Retour</a>
+</div>
+
+<ul class="item-list">
+    {% for veh in list %}
+        <li>
+            <div>
+                <span class="reference">🚛 {{ veh.immatriculation }}</span>
+                <p class="info">
+                        🚚 Type : {{ veh.type_vehicule }}<br>
+                        ⚖️ Capacité : {{ veh.capacite_kg }} kg<br>
+                        🏢 Entreprise : {{ veh.entrprise }}<br>
+                        ✅ Disponible : {{ veh.disponible|yesno:"Oui,Non" }}
+                </p>
+            </div>
+            <div class="actions">
+                <a class="btn" href="{% url 'vehicule:details' veh.pk %}">👁️ Détails</a>
+                <a class="btn" href="{% url 'vehicule:update_class' veh.pk %}">✏️ Modifier</a>
+                <a class="btn delete" href="{% url 'vehicule:supprimer_class' veh.pk %}">🗑️ Supprimer</a>
+            </div>
+        </li>
+    {% empty %}
+        <li class="empty">Aucun(e) véhicule trouvé(e).</li>
+    {% endfor %}
+</ul>
+{% endblock %}

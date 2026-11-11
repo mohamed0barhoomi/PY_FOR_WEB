@@ -1,0 +1,19 @@
+{% extends "base_app.html" %}
+
+{% block title %}{% if object %}Modifier une offre{% else %}Ajouter une offre{% endif %}{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}{% if object %}✏️ Modifier l'offre #{{ object.pk }}{% else %}➕ Ajouter une offre{% endif %}{% endblock %}
+
+{% block content %}
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+        <div class="actions">
+            <button type="submit">{% if object %}Modifier{% else %}Enregistrer{% endif %}</button>
+            <a class="btn light" href="{% url 'offre:liste_class' %}">Retour à la liste</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

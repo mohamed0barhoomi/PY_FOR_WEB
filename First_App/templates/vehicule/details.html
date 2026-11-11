@@ -1,0 +1,23 @@
+{% extends "base_app.html" %}
+
+{% block title %}Détails véhicule{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}🚛 {{ veh.immatriculation }}{% endblock %}
+{% block subheader %}Détails véhicule{% endblock %}
+
+{% block content %}
+<div class="box">
+    <p><strong>Immatriculation :</strong> {{ veh.immatriculation }}</p>
+    <p><strong>Type :</strong> {{ veh.type_vehicule }}</p>
+    <p><strong>Capacité :</strong> {{ veh.capacite_kg }} kg</p>
+    <p><strong>Disponible :</strong> {{ veh.disponible|yesno:"Oui,Non" }}</p>
+    <p><strong>Entreprise :</strong> {{ veh.entrprise }}</p>
+    <p><strong>Créé le :</strong> {{ veh.created_at|date:"d/m/Y H:i" }}</p>
+
+    <div class="actions">
+        <a class="btn" href="{% url 'vehicule:list' %}">Retour à la liste</a>
+        <a class="btn" href="{% url 'vehicule:update_class' veh.pk %}">✏️ Modifier</a>
+        <a class="btn delete" href="{% url 'vehicule:supprimer_class' veh.pk %}">🗑️ Supprimer</a>
+    </div>
+</div>
+{% endblock %}

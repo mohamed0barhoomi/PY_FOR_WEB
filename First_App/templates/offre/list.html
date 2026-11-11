@@ -1,35 +1,234 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Liste des expéditions</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <h1>Liste des expéditions</h1>
+    <title>Liste des offres | TransConnect</title>
 
-    <ul>
-      {% for off in list %}
-        <li>
-          <a href="{% url 'offre:details_off' off.pk %}">
-            {{ off.delai_jours }}
-          </a>
-          -- {{ off.entreprise }}
-          -- {{off.expedition}} 
-          -- {{ off.statut }} --
-          <a href="{% url 'offre:details_off' off.pk %}">
-            details
-          </a>
-          <span>||</span>
-          <a href="{% url 'offre:delete' off.pk %}">
-            Supprimer
-          </a>
-        </li>
-      {% empty %}
-        <li>Aucune expédition trouvée.</li>
-      {% endfor %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dce6f1);
+            min-height: 100vh;
+            color: #263238;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #dce6f1;
+            font-size: 15px;
+        }
+
+        .offre-list {
+            list-style: none;
+        }
+
+        .offre-list li {
+            background: white;
+            padding: 22px 25px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-left: 5px solid #2471a3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .offre-list li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info {
+            color: #657080;
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.9;
+        }
+
+        .reference {
+            color: #17365d;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .details {
+            background: #2471a3;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .details:hover {
+            background: #17365d;
+        }
+
+        .delete {
+            background: #dc3545;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .delete:hover {
+            background: #b02a37;
+        }
+
+        .empty {
+            justify-content: center;
+            text-align: center;
+            color: #657080;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #657080;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .offre-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>📦 Liste des offres</h1>
+        <p>Consultez et gérez toutes les offres de TransConnect</p>
+    </header>
+
+    <p style="margin-bottom:25px">
+        <a class="details" href="{% url 'offre:create_class' %}">➕ Ajouter une offre</a>
+        <a class="details" href="{% url 'offre:home' %}">⬅️ Retour</a>
+    </p>
+
+    <ul class="offre-list">
+
+        {% for off in list %}
+
+            <li>
+
+                <div>
+                    <span class="reference">
+                        📋 Offre #{{ off.pk }}
+                    </span>
+
+                    <p class="info">
+                        ⏳ Délai : {{ off.delai_jours }} jours
+                        <br>
+
+                        🏢 Entreprise : {{ off.entreprise }}
+                        <br>
+
+                        📦 Expédition : {{ off.expedition }}
+                        <br>
+
+                        📌 Statut : {{ off.statut }}
+                    </p>
+                </div>
+
+                <div class="actions">
+
+                    <a class="details"
+                       href="{% url 'offre:details_off' off.pk %}">
+                        👁️ Détails
+                    </a>
+
+                    <a class="details"
+                       href="{% url 'offre:update_class' off.pk %}">
+                        ✏️ Modifier
+                    </a>
+
+                    <a class="delete"
+                       href="{% url 'offre:supprimer_class' off.pk %}">
+                        🗑️ Supprimer
+                    </a>
+
+                </div>
+
+            </li>
+
+        {% empty %}
+
+            <li class="empty">
+                Aucune offre trouvée.
+            </li>
+
+        {% endfor %}
+
     </ul>
-  </body>
-</html>
 
+    <footer>
+        &copy; 2026 TransConnect — Gestion des offres.
+    </footer>
+
+</div>
+
+</body>
+</html>

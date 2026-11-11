@@ -1,80 +1,24 @@
-<!DOCTYPE html>
+{% extends "base_app.html" %}
 
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Détails de l'offre{% endblock %}
+{% block container_class %}narrow{% endblock %}
+{% block header %}📋 Offre #{{ off.pk }}{% endblock %}
+{% block subheader %}Détails de l'offre{% endblock %}
 
-```
-<title>Détails de l'expédition | TransConnect</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #eef2f7;
-        padding: 40px;
-        color: #263238;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-        color: #17365d;
-        margin-bottom: 25px;
-    }
-
-    p {
-        margin: 15px 0;
-        font-size: 16px;
-    }
-
-    a {
-        display: inline-block;
-        margin-top: 20px;
-        margin-right: 10px;
-        padding: 10px 18px;
-        background: #2471a3;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
-    .delete {
-        background: #dc3545;
-    }
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-    <h1>Détails de l'offre {{ off.reference }}</h1>
-
-    <p><strong>prix  :</strong> {{ off.prix }}</p>
-
-    <p><strong>delai jours:</strong> {{ off.delai_jours }}</p>
-
+{% block content %}
+<div class="box">
+    <p><strong>Prix :</strong> {{ off.prix }} DT</p>
+    <p><strong>Délai :</strong> {{ off.delai_jours }} jours</p>
     <p><strong>Statut :</strong> {{ off.statut }}</p>
+    <p><strong>Date de proposition :</strong> {{ off.date_proposition }}</p>
+    <p><strong>Entreprise :</strong> {{ off.entreprise }}</p>
+    <p><strong>Véhicule :</strong> {{ off.vehicule }}</p>
+    <p><strong>Expédition :</strong> {{ off.expedition }}</p>
 
-    <a href="{% url 'expedition:list' %}">
-        Retour à la liste
-    </a>
-
-    <a class="delete" href="{% url 'expedition:delete' off.pk %}">
-        Supprimer
-    </a>
-
+    <div class="actions">
+        <a class="btn" href="{% url 'offre:list_off' %}">Retour à la liste</a>
+        <a class="btn" href="{% url 'offre:update_class' off.pk %}">✏️ Modifier</a>
+        <a class="btn delete" href="{% url 'offre:supprimer_class' off.pk %}">🗑️ Supprimer</a>
+    </div>
 </div>
-
-
-</body>
-</html>
+{% endblock %}
